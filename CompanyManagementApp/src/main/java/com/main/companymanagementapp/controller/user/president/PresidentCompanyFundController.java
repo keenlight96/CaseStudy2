@@ -12,9 +12,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class PresidentCompanyFundController implements Initializable {
+    NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
     @FXML
     private Label companyFund;
     @FXML
@@ -24,13 +27,14 @@ public class PresidentCompanyFundController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        companyFund.setText(String.valueOf(president.getCompanyFund()));
+        companyFund.setText(numberFormat.format(president.getCompanyFund()));
     }
 
     public void deposit() {
         if (CheckInput.isValidLong(money.getText())) {
             president.setCompanyFund(president.getCompanyFund() + Long.parseLong(money.getText()));
-            alert.show("SUCCESS","Deposited successfully","Company fund has raised by " + money.getText());
+            alert.show("SUCCESS","Deposited successfully","Company fund has raised by " +
+                    numberFormat.format(Long.parseLong(money.getText())));
             companyFund.setText(String.valueOf(president.getCompanyFund()));
             money.setText("");
         } else {
@@ -43,7 +47,8 @@ public class PresidentCompanyFundController implements Initializable {
         if (CheckInput.isValidLong(money.getText())) {
             if (Long.parseLong(money.getText()) <= president.getCompanyFund()) {
                 president.setCompanyFund(president.getCompanyFund() - Long.parseLong(money.getText()));
-                alert.show("SUCCESS","Withdrew successfully","Company fund has decreased by " + money.getText());
+                alert.show("SUCCESS","Withdrew successfully","Company fund has decreased by " +
+                        numberFormat.format(Long.parseLong(money.getText())));
                 companyFund.setText(String.valueOf(president.getCompanyFund()));
                 money.setText("");
             } else {

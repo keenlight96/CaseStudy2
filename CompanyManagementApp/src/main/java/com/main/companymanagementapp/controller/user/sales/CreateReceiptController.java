@@ -7,6 +7,7 @@ import com.main.companymanagementapp.customer.CustomerBuilder;
 import com.main.companymanagementapp.product.Product;
 import com.main.companymanagementapp.receipt.ReceiptBuilder;
 import com.main.companymanagementapp.user.employer.President;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,12 +18,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.text.NumberFormat;
+import java.util.*;
 
 public class CreateReceiptController implements Initializable {
+    NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
     President president = (President) Main.userManagement.get(0);
     // Customer
     @FXML
@@ -54,7 +54,7 @@ public class CreateReceiptController implements Initializable {
     @FXML
     private TableColumn<Product, Integer> quantityColumn;
     @FXML
-    private TableColumn<Product, Long> priceColumn;
+    private TableColumn<Product, String> priceColumn;
     private ObservableList<Product> productList;
 
     // Products to Buy
@@ -69,9 +69,9 @@ public class CreateReceiptController implements Initializable {
     @FXML
     private TableColumn<Product, Integer> quantityColumn1;
     @FXML
-    private TableColumn<Product, Long> priceColumn1;
+    private TableColumn<Product, String> priceColumn1;
     @FXML
-    private TableColumn<Product, Long> totalPriceColumn1;
+    private TableColumn<Product, String> totalPriceColumn1;
     private ObservableList<Product> productList1;
 
     private List<Product> productsToBuyList = new ArrayList<>();
@@ -94,7 +94,13 @@ public class CreateReceiptController implements Initializable {
         nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
         uomColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("uom"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("quantity"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Long>("sellPrice"));
+        priceColumn.setCellValueFactory(cellData ->{
+            Long sellPrice = cellData.getValue().getSellPrice();
+            if (sellPrice != 0) {
+                return new SimpleStringProperty(numberFormat.format(sellPrice));
+            }
+            return new SimpleStringProperty("");
+        });
         tableView.setItems(productList);
         addButtonADDToTable();
 
@@ -104,8 +110,20 @@ public class CreateReceiptController implements Initializable {
         nameColumn1.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
         uomColumn1.setCellValueFactory(new PropertyValueFactory<Product, String>("uom"));
         quantityColumn1.setCellValueFactory(new PropertyValueFactory<Product, Integer>("quantity"));
-        priceColumn1.setCellValueFactory(new PropertyValueFactory<Product, Long>("sellPrice"));
-        totalPriceColumn1.setCellValueFactory(new PropertyValueFactory<Product, Long>("totalSellPrice"));
+        priceColumn1.setCellValueFactory(cellData ->{
+            Long sellPrice = cellData.getValue().getSellPrice();
+            if (sellPrice != 0) {
+                return new SimpleStringProperty(numberFormat.format(sellPrice));
+            }
+            return new SimpleStringProperty("");
+        });
+        totalPriceColumn1.setCellValueFactory(cellData ->{
+            Long totalSellPrice = cellData.getValue().getTotalSellPrice();
+            if (totalSellPrice != 0) {
+                return new SimpleStringProperty(numberFormat.format(totalSellPrice));
+            }
+            return new SimpleStringProperty("");
+        });
         tableView1.setItems(productList1);
         addButtonREMOVEToTable();
         totalPayment.setText("0");
@@ -269,7 +287,7 @@ public class CreateReceiptController implements Initializable {
                 productsToBuyList) {
             totalPaymentVar += e.getTotalSellPrice();
         }
-        totalPayment.setText(String.valueOf(totalPaymentVar));
+        totalPayment.setText(numberFormat.format(totalPaymentVar));
     }
 
     public void addProduct(Product product) {

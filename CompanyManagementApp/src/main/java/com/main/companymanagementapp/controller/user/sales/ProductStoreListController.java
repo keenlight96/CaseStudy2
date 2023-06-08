@@ -2,6 +2,7 @@ package com.main.companymanagementapp.controller.user.sales;
 
 import com.main.companymanagementapp.Main;
 import com.main.companymanagementapp.product.Product;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,10 +13,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
 import java.net.URL;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ProductStoreListController implements Initializable {
+    NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
     @FXML
     private TableView<Product> tableView;
     @FXML
@@ -27,11 +31,11 @@ public class ProductStoreListController implements Initializable {
     @FXML
     private TableColumn<Product,Integer> quantityColumn;
     @FXML
-    private TableColumn<Product, Long> buyPriceColumn;
+    private TableColumn<Product, String> buyPriceColumn;
     @FXML
-    private TableColumn<Product, Long> sellPriceColumn;
+    private TableColumn<Product, String> sellPriceColumn;
     @FXML
-    private TableColumn<Product, Long> totalSellPriceColumn;
+    private TableColumn<Product, String> totalSellPriceColumn;
     @FXML
     private TableColumn<Product,String> originColumn;
     @FXML
@@ -46,9 +50,27 @@ public class ProductStoreListController implements Initializable {
         nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
         uomColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("uom"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("quantity"));
-        buyPriceColumn.setCellValueFactory(new PropertyValueFactory<Product, Long>("buyPrice"));
-        sellPriceColumn.setCellValueFactory(new PropertyValueFactory<Product, Long>("sellPrice"));
-        totalSellPriceColumn.setCellValueFactory(new PropertyValueFactory<Product, Long>("totalSellPrice"));
+        buyPriceColumn.setCellValueFactory(cellData ->{
+            Long buyPrice = cellData.getValue().getBuyPrice();
+            if (buyPrice != 0) {
+                return new SimpleStringProperty(numberFormat.format(buyPrice));
+            }
+            return new SimpleStringProperty("");
+        });
+        sellPriceColumn.setCellValueFactory(cellData ->{
+            Long sellPrice = cellData.getValue().getSellPrice();
+            if (sellPrice != 0) {
+                return new SimpleStringProperty(numberFormat.format(sellPrice));
+            }
+            return new SimpleStringProperty("");
+        });
+        totalSellPriceColumn.setCellValueFactory(cellData ->{
+            Long totalSellPrice = cellData.getValue().getTotalSellPrice();
+            if (totalSellPrice != 0) {
+                return new SimpleStringProperty(numberFormat.format(totalSellPrice));
+            }
+            return new SimpleStringProperty("");
+        });
         originColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("origin"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("description"));
 

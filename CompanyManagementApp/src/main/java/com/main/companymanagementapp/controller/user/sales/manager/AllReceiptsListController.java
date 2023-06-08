@@ -43,7 +43,7 @@ public class AllReceiptsListController implements Initializable {
     @FXML
     private TableColumn<Receipt, String> priceProductColumn;
     @FXML
-    private TableColumn<Receipt, Long> totalPriceColumn;
+    private TableColumn<Receipt, String> totalPriceColumn;
     @FXML
     private TableColumn<Receipt, String> originColumn;
     @FXML
@@ -135,14 +135,20 @@ public class AllReceiptsListController implements Initializable {
             if (list != null) {
                 for (Product e :
                         list) {
-                    productString += e.getSellPrice() + "\n";
+                    productString += numberFormat.format(e.getSellPrice()) + "\n";
                 }
                 return new SimpleStringProperty(productString);
             }
             return new SimpleStringProperty("");
         });
-        totalPriceColumn.setCellValueFactory(new PropertyValueFactory<Receipt, Long>("totalPrice"));
-
+//        totalPriceColumn.setCellValueFactory(new PropertyValueFactory<Receipt, Long>("totalPrice"));
+        totalPriceColumn.setCellValueFactory(cellData ->{
+            Long totalPrice = cellData.getValue().getTotalPrice();
+            if (totalPrice != 0) {
+                return new SimpleStringProperty(numberFormat.format(totalPrice));
+            }
+            return new SimpleStringProperty("");
+        });
 //        FilteredList<Product> filteredList = new FilteredList<>(productList);
 //        filteredList.setPredicate(Product -> {
 //            return (Product instanceof LogisticsStaff);

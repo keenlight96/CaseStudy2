@@ -5,6 +5,7 @@ import com.main.companymanagementapp.controller.AlertInformation;
 import com.main.companymanagementapp.controller.Controller;
 import com.main.companymanagementapp.user.Employee;
 import com.main.companymanagementapp.user.employer.President;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,9 +19,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
 import java.net.URL;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class SalaryCalculationController implements Initializable {
+    NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
     @FXML
     private TableView<Employee> tableView;
     @FXML
@@ -36,7 +40,7 @@ public class SalaryCalculationController implements Initializable {
     @FXML
     private TableColumn<Employee,Integer> workdaysColumn;
     @FXML
-    private TableColumn<Employee,Long> salaryColumn;
+    private TableColumn<Employee,String> salaryColumn;
 
     private ObservableList<Employee> employeeList;
     AlertInformation alert = new AlertInformation();
@@ -58,7 +62,13 @@ public class SalaryCalculationController implements Initializable {
         nameColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("name"));
         phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("phoneNumber"));
         workdaysColumn.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("workDays"));
-        salaryColumn.setCellValueFactory(new PropertyValueFactory<Employee, Long>("salary"));
+        salaryColumn.setCellValueFactory(cellData ->{
+            Long salary = cellData.getValue().getSalary();
+            if (salary != 0) {
+                return new SimpleStringProperty(numberFormat.format(salary));
+            }
+            return new SimpleStringProperty("");
+        });
         tableView.setItems(employeeList);
 //        addButtonToTable();
     }

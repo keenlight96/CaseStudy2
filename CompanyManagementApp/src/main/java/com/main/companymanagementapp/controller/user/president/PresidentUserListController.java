@@ -3,6 +3,7 @@ package com.main.companymanagementapp.controller.user.president;
 import com.main.companymanagementapp.Main;
 import com.main.companymanagementapp.controller.Controller;
 import com.main.companymanagementapp.user.Employee;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,9 +14,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
 import java.net.URL;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class PresidentUserListController implements Initializable {
+    NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
     @FXML
     private TableView<Employee> tableView;
     @FXML
@@ -31,6 +35,8 @@ public class PresidentUserListController implements Initializable {
     @FXML
     private TableColumn<Employee,String> addressColumn;
     @FXML
+    private TableColumn<Employee,String> totalSalaryColumn;
+    @FXML
     private TableColumn<Employee,String> statusColumn;
 
     private ObservableList<Employee> employeeList;
@@ -44,6 +50,13 @@ public class PresidentUserListController implements Initializable {
         nameColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("name"));
         phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("phoneNumber"));
         addressColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("address"));
+        totalSalaryColumn.setCellValueFactory(cellData ->{
+            Long totalSalary = cellData.getValue().getTotalSalary();
+            if (totalSalary != 0) {
+                return new SimpleStringProperty(numberFormat.format(totalSalary));
+            }
+            return new SimpleStringProperty("");
+        });
         statusColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("status"));
         tableView.setItems(employeeList);
         if (Main.user.getRole().equals("President")){
