@@ -1,6 +1,7 @@
 package com.main.companymanagementapp.controller.login;
 
 import com.main.companymanagementapp.Main;
+import com.main.companymanagementapp.controller.AlertInformation;
 import com.main.companymanagementapp.controller.Controller;
 import com.main.companymanagementapp.data.Loader;
 import com.main.companymanagementapp.user.Employee;
@@ -17,6 +18,7 @@ import javafx.stage.Stage;
 import java.util.List;
 
 public class LoginController {
+    AlertInformation alert = new AlertInformation();
     @FXML
     private TextField username;
     @FXML
@@ -36,9 +38,9 @@ public class LoginController {
             }
         }
         if (!checkUsername)
-            System.out.println("User doesn't exist");
+            alert.show("FAILURE","User doesn't exist","");
         else if (!checkPassword)
-            System.out.println("Wrong password");
+            alert.show("FAILURE","Wrong password","");
         else
             System.out.println("Login successfully");
     }

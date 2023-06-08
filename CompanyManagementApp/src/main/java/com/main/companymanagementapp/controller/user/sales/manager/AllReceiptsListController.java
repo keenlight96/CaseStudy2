@@ -15,10 +15,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class AllReceiptsListController implements Initializable {
+    NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
     @FXML
     private TableView<Receipt> tableView;
     @FXML
@@ -84,7 +87,7 @@ public class AllReceiptsListController implements Initializable {
             if (list != null) {
                 for (Product e :
                         list) {
-                    productString += e.getId()+"\n";
+                    productString += e.getId() + "\n";
                 }
                 return new SimpleStringProperty(productString);
             }
@@ -96,7 +99,7 @@ public class AllReceiptsListController implements Initializable {
             if (list != null) {
                 for (Product e :
                         list) {
-                    productString += e.getName()+"\n";
+                    productString += e.getName() + "\n";
                 }
                 return new SimpleStringProperty(productString);
             }
@@ -108,7 +111,7 @@ public class AllReceiptsListController implements Initializable {
             if (list != null) {
                 for (Product e :
                         list) {
-                    productString += e.getUom()+"\n";
+                    productString += e.getUom() + "\n";
                 }
                 return new SimpleStringProperty(productString);
             }
@@ -120,7 +123,7 @@ public class AllReceiptsListController implements Initializable {
             if (list != null) {
                 for (Product e :
                         list) {
-                    productString += e.getQuantity()+"\n";
+                    productString += e.getQuantity() + "\n";
                 }
                 return new SimpleStringProperty(productString);
             }
@@ -132,7 +135,7 @@ public class AllReceiptsListController implements Initializable {
             if (list != null) {
                 for (Product e :
                         list) {
-                    productString += e.getSellPrice()+"\n";
+                    productString += e.getSellPrice() + "\n";
                 }
                 return new SimpleStringProperty(productString);
             }

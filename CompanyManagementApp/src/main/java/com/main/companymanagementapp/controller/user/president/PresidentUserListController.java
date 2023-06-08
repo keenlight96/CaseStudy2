@@ -46,7 +46,9 @@ public class PresidentUserListController implements Initializable {
         addressColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("address"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("status"));
         tableView.setItems(employeeList);
-        addButtonToTable();
+        if (Main.user.getRole().equals("President")){
+            addButtonToTable();
+        }
     }
     private void addButtonToTable() {
         TableColumn<Employee, Void> colBtn = new TableColumn("Terminate");
@@ -59,7 +61,7 @@ public class PresidentUserListController implements Initializable {
                     private final Button btn = new Button("Terminate");
 
                     {
-                        btn.setOnAction((ActionEvent event) -> terminate(getTableView().getItems().get(getIndex()).getUsername()));
+                        btn.setOnAction((ActionEvent event) -> terminate(getTableView().getItems().get(getIndex())));
                     }
 
                     @Override
@@ -82,8 +84,11 @@ public class PresidentUserListController implements Initializable {
 
     }
 
-    public void terminate(String username) {
-        // Add code here
+    public void terminate(Employee employee) {
+        Main.userManagement.remove(employee);
+        employeeList.clear();
+        employeeList.addAll(Main.userManagement);
+        tableView.refresh();
     }
 
     public void activate(String username) {
