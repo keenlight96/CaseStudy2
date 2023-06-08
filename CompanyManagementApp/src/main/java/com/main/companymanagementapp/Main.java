@@ -28,21 +28,5 @@ public class Main {
     public static List<Product> productStoreManagement = new ArrayList<>();
     public static List<Customer> customerManagement = new ArrayList<>();
     public static List<Receipt> receiptManagement = new ArrayList<>();
-    public static void main(String[] args) {
-        Loader.loadIdData();
 
-
-//        idData.put("PR",0);
-//        idData.put("SM",0);
-//        idData.put("SP",0);
-//        idData.put("LM",0);
-//        idData.put("LE",0);
-//        idData.put("FM",0);
-//        idData.put("FE",0);
-//        Saver.saveIdData();
-
-//        Scanner scanner = new Scanner(System.in);
-//        UserManagement management = new UserManagement();
-//        management.mainControlPanel();
-    }
 }
