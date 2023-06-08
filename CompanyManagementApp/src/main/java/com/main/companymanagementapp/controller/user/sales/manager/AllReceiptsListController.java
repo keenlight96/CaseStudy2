@@ -66,18 +66,18 @@ public class AllReceiptsListController implements Initializable {
             }
             return new SimpleStringProperty("");
         });
-        productColumn.setCellValueFactory(cellData -> {
-            String productString = "";
-            List<Product> list = cellData.getValue().getProducts();
-            if (list != null) {
-                for (Product e :
-                        list) {
-                    productString += String.format("%4s%20s%5s%-5d%-12d\n",e.getId(),e.getName(), e.getUom(),e.getQuantity(),e.getBuyPrice());
-                }
-                return new SimpleStringProperty(productString);
-            }
-            return new SimpleStringProperty("");
-        });
+//        productColumn.setCellValueFactory(cellData -> {
+//            String productString = "";
+//            List<Product> list = cellData.getValue().getProducts();
+//            if (list != null) {
+//                for (Product e :
+//                        list) {
+//                    productString += String.format("%4s%20s%5s%-5d%-12d\n",e.getId(),e.getName(), e.getUom(),e.getQuantity(),e.getSellPrice());
+//                }
+//                return new SimpleStringProperty(productString);
+//            }
+//            return new SimpleStringProperty("");
+//        });
         idProductColumn.setCellValueFactory(cellData -> {
             String productString = "";
             List<Product> list = cellData.getValue().getProducts();
@@ -132,7 +132,7 @@ public class AllReceiptsListController implements Initializable {
             if (list != null) {
                 for (Product e :
                         list) {
-                    productString += e.getBuyPrice()+"\n";
+                    productString += e.getSellPrice()+"\n";
                 }
                 return new SimpleStringProperty(productString);
             }

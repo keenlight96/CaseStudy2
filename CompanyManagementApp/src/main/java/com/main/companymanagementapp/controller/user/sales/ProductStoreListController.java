@@ -7,14 +7,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ProductStoreListController implements Initializable {
@@ -62,20 +60,22 @@ public class ProductStoreListController implements Initializable {
 //        tableView.setItems(filteredList);
         tableView.setItems(productList);
 
-//        addButtonToTable();
+        if (Main.user.getRole().equals("Store Manager")) {
+            addButtonToTable();
+        }
     }
     private void addButtonToTable() {
-        TableColumn<Product, Void> colBtn = new TableColumn("Terminate");
+        TableColumn<Product, Void> colBtn = new TableColumn("Function");
 
         Callback<TableColumn<Product, Void>, TableCell<Product, Void>> cellFactory = new Callback<>() {
             @Override
             public TableCell<Product, Void> call(final TableColumn<Product, Void> param) {
                 final TableCell<Product, Void> cell = new TableCell<>() {
 
-                    private final Button btn = new Button("Terminate");
+                    private final Button btn = new Button("Change Sell Price");
 
                     {
-                        btn.setOnAction((ActionEvent event) -> terminate(getTableView().getItems().get(getIndex()).getId()));
+                        btn.setOnAction((ActionEvent event) -> changeSellPrice(getTableView().getItems().get(getIndex())));
                     }
 
                     @Override
@@ -98,9 +98,22 @@ public class ProductStoreListController implements Initializable {
 
     }
 
-    public void terminate(String id) {
-        // Add code here
-        // Terminate in filteredList and also in employeeList
+    public void changeSellPrice(Product product) {
+        TextInputDialog textInputDialog = new TextInputDialog();
+        textInputDialog.setTitle("CHANGING");
+        textInputDialog.setHeaderText("Change sell price of product");
+        textInputDialog.setContentText("Enter new sell price:");
+        Optional<String> input = textInputDialog.showAndWait();
+
+        try {
+            long newSellPrice = Long.parseLong(input.get());
+            product.setSellPrice(newSellPrice);
+
+            productList.clear();
+            productList.addAll(Main.productStoreManagement);
+            tableView.refresh();
+        } catch (Exception e){
+        }
     }
 
     public void back(ActionEvent event) {

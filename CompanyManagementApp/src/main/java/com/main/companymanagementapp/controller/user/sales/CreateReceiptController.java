@@ -6,6 +6,7 @@ import com.main.companymanagementapp.customer.Customer;
 import com.main.companymanagementapp.customer.CustomerBuilder;
 import com.main.companymanagementapp.product.Product;
 import com.main.companymanagementapp.receipt.ReceiptBuilder;
+import com.main.companymanagementapp.user.employer.President;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,6 +23,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CreateReceiptController implements Initializable {
+    President president = (President) Main.userManagement.get(0);
     // Customer
     @FXML
     private Label id;
@@ -92,7 +94,7 @@ public class CreateReceiptController implements Initializable {
         nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
         uomColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("uom"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("quantity"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Long>("price"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Long>("sellPrice"));
         tableView.setItems(productList);
         addButtonADDToTable();
 
@@ -102,8 +104,8 @@ public class CreateReceiptController implements Initializable {
         nameColumn1.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
         uomColumn1.setCellValueFactory(new PropertyValueFactory<Product, String>("uom"));
         quantityColumn1.setCellValueFactory(new PropertyValueFactory<Product, Integer>("quantity"));
-        priceColumn1.setCellValueFactory(new PropertyValueFactory<Product, Long>("price"));
-        totalPriceColumn1.setCellValueFactory(new PropertyValueFactory<Product, Long>("totalPrice"));
+        priceColumn1.setCellValueFactory(new PropertyValueFactory<Product, Long>("sellPrice"));
+        totalPriceColumn1.setCellValueFactory(new PropertyValueFactory<Product, Long>("totalSellPrice"));
         tableView1.setItems(productList1);
         addButtonREMOVEToTable();
         totalPayment.setText("0");
@@ -175,11 +177,12 @@ public class CreateReceiptController implements Initializable {
                     .addTotalPrice(Long.parseLong(totalPayment.getText()));
             Main.receiptManagement.add(builder.build());
             customer.setTotalBuy(customer.getTotalBuy() + Long.parseLong(totalPayment.getText()));
+            president.setCompanyFund(president.getCompanyFund() + Long.parseLong(totalPayment.getText()));
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("SUCCESS");
             alert.setHeaderText("A new receipt has been created");
-            alert.setContentText("Thank you");
+            alert.setContentText("Total payment: " + totalPayment.getText());
             alert.showAndWait();
             Main.user.userControlPanel(event);
         }
@@ -264,7 +267,7 @@ public class CreateReceiptController implements Initializable {
         long totalPaymentVar = 0;
         for (Product e :
                 productsToBuyList) {
-            totalPaymentVar += e.getTotalBuyPrice();
+            totalPaymentVar += e.getTotalSellPrice();
         }
         totalPayment.setText(String.valueOf(totalPaymentVar));
     }
