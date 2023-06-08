@@ -59,7 +59,7 @@ public class LEListController implements Initializable {
         tableView.setItems(filteredList);
 //        tableView.setItems(employeeList);
 
-        addButtonToTable();
+//        addButtonToTable();
     }
     private void addButtonToTable() {
         TableColumn<Employee, Void> colBtn = new TableColumn("Terminate");
@@ -101,6 +101,6 @@ public class LEListController implements Initializable {
     }
 
     public void back(ActionEvent event){
-        Controller.switchScene(event, Controller.LMControlPanelView);
+        Main.user.userControlPanel(event);
     }
 }

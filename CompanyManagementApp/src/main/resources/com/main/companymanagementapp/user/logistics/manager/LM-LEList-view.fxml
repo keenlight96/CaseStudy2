@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -27,6 +26,5 @@
             <TableColumn fx:id="statusColumn" prefWidth="75.0" text="Status" />
          </columns>
       </TableView>
-      <ChoiceBox layoutX="853.0" layoutY="73.0" prefHeight="25.0" prefWidth="135.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="65.0" />
    </children>
 </AnchorPane>

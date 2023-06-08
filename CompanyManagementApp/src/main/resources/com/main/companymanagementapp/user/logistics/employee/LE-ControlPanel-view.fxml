@@ -18,7 +18,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button alignment="BOTTOM_LEFT" layoutX="550.0" layoutY="244.0" mnemonicParsing="false" onAction="#toImportProductController" prefHeight="40.0" prefWidth="300.0" text="Add products" wrapText="true" AnchorPane.topAnchor="150.0">
+      <Button alignment="BOTTOM_LEFT" layoutX="550.0" layoutY="244.0" mnemonicParsing="false" onAction="#toImportProductController" prefHeight="40.0" prefWidth="300.0" text="Import products" wrapText="true" AnchorPane.topAnchor="150.0">
          <font>
             <Font size="18.0" />
          </font>

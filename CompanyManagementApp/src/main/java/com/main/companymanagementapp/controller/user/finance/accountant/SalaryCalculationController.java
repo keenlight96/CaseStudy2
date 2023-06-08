@@ -88,6 +88,10 @@ public class SalaryCalculationController implements Initializable {
                 e.setSalary(0);
                 e.setWorkDays(0);
             }
+            employeeList.clear();
+            employeeList.addAll(Main.userManagement);
+            tableView.refresh();
+
         } else {
             alert.show("FAILURE","President said company fund has not enough", "");
         }
@@ -136,7 +140,7 @@ public class SalaryCalculationController implements Initializable {
     }
 
     public void back(ActionEvent event) {
-        Controller.switchScene(event, Controller.ACControlPanelView);
+        Main.user.userControlPanel(event);
     }
 
 }

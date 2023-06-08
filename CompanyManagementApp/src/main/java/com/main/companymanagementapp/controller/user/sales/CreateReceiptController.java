@@ -24,6 +24,7 @@ import java.util.*;
 public class CreateReceiptController implements Initializable {
     NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
     President president = (President) Main.userManagement.get(0);
+    long totalPaymentVar = 0;
     // Customer
     @FXML
     private Label id;
@@ -94,7 +95,7 @@ public class CreateReceiptController implements Initializable {
         nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
         uomColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("uom"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("quantity"));
-        priceColumn.setCellValueFactory(cellData ->{
+        priceColumn.setCellValueFactory(cellData -> {
             Long sellPrice = cellData.getValue().getSellPrice();
             if (sellPrice != 0) {
                 return new SimpleStringProperty(numberFormat.format(sellPrice));
@@ -110,14 +111,14 @@ public class CreateReceiptController implements Initializable {
         nameColumn1.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
         uomColumn1.setCellValueFactory(new PropertyValueFactory<Product, String>("uom"));
         quantityColumn1.setCellValueFactory(new PropertyValueFactory<Product, Integer>("quantity"));
-        priceColumn1.setCellValueFactory(cellData ->{
+        priceColumn1.setCellValueFactory(cellData -> {
             Long sellPrice = cellData.getValue().getSellPrice();
             if (sellPrice != 0) {
                 return new SimpleStringProperty(numberFormat.format(sellPrice));
             }
             return new SimpleStringProperty("");
         });
-        totalPriceColumn1.setCellValueFactory(cellData ->{
+        totalPriceColumn1.setCellValueFactory(cellData -> {
             Long totalSellPrice = cellData.getValue().getTotalSellPrice();
             if (totalSellPrice != 0) {
                 return new SimpleStringProperty(numberFormat.format(totalSellPrice));
@@ -167,7 +168,7 @@ public class CreateReceiptController implements Initializable {
     }
 
     public void createReceipt(ActionEvent event) {
-        if (checkCustomerInformation() && (Long.parseLong(totalPayment.getText()) != 0)) {
+        if (checkCustomerInformation() && (totalPaymentVar != 0)) {
             // Get customer
             Customer customer = null;
             boolean check = false;
@@ -179,7 +180,7 @@ public class CreateReceiptController implements Initializable {
                     break;
                 }
             }
-            if (!check){
+            if (!check) {
                 CustomerBuilder customerBuilder = new CustomerBuilder();
                 customerBuilder.addName(name.getText())
                         .addPhoneNumber(phoneNumber.getText())
@@ -192,10 +193,10 @@ public class CreateReceiptController implements Initializable {
             ReceiptBuilder builder = new ReceiptBuilder();
             builder.addCustomer(customer)
                     .addProducts(productsToBuyList)
-                    .addTotalPrice(Long.parseLong(totalPayment.getText()));
+                    .addTotalPrice(totalPaymentVar);
             Main.receiptManagement.add(builder.build());
-            customer.setTotalBuy(customer.getTotalBuy() + Long.parseLong(totalPayment.getText()));
-            president.setCompanyFund(president.getCompanyFund() + Long.parseLong(totalPayment.getText()));
+            customer.setTotalBuy(customer.getTotalBuy() + totalPaymentVar);
+            president.setCompanyFund(president.getCompanyFund() + totalPaymentVar);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("SUCCESS");
@@ -282,7 +283,7 @@ public class CreateReceiptController implements Initializable {
         productList1.clear();
         productList1.addAll(productsToBuyList);
         tableView1.refresh();
-        long totalPaymentVar = 0;
+        totalPaymentVar = 0;
         for (Product e :
                 productsToBuyList) {
             totalPaymentVar += e.getTotalSellPrice();
@@ -338,11 +339,11 @@ public class CreateReceiptController implements Initializable {
 
     public void back(ActionEvent event) {
         try {
-            for (Product e :
-                    productsToBuyList) {
-                removeProduct(e);
+            for (int i = 0; i < productsToBuyList.size(); i++) {
+                removeProduct(productsToBuyList.get(i));
+                i--;
             }
-        } catch (Exception e){
+        } catch (Exception e) {
         }
         Main.user.userControlPanel(event);
     }

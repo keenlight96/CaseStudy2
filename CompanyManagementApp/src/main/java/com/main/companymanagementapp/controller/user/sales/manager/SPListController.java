@@ -60,7 +60,7 @@ public class SPListController implements Initializable {
         tableView.setItems(filteredList);
 //        tableView.setItems(employeeList);
 
-        addButtonToTable();
+//        addButtonToTable();
     }
     private void addButtonToTable() {
         TableColumn<Employee, Void> colBtn = new TableColumn("Terminate");
@@ -102,6 +102,6 @@ public class SPListController implements Initializable {
     }
 
     public void back(ActionEvent event){
-        Controller.switchScene(event, Controller.SMControlPanelView);
+        Main.user.userControlPanel(event);
     }
 }

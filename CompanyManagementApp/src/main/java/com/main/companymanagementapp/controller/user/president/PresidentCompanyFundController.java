@@ -35,7 +35,7 @@ public class PresidentCompanyFundController implements Initializable {
             president.setCompanyFund(president.getCompanyFund() + Long.parseLong(money.getText()));
             alert.show("SUCCESS","Deposited successfully","Company fund has raised by " +
                     numberFormat.format(Long.parseLong(money.getText())));
-            companyFund.setText(String.valueOf(president.getCompanyFund()));
+            companyFund.setText(numberFormat.format(president.getCompanyFund()));
             money.setText("");
         } else {
             alert.show("FAILURE","Wrong input format","");
@@ -49,7 +49,7 @@ public class PresidentCompanyFundController implements Initializable {
                 president.setCompanyFund(president.getCompanyFund() - Long.parseLong(money.getText()));
                 alert.show("SUCCESS","Withdrew successfully","Company fund has decreased by " +
                         numberFormat.format(Long.parseLong(money.getText())));
-                companyFund.setText(String.valueOf(president.getCompanyFund()));
+                companyFund.setText(numberFormat.format(president.getCompanyFund()));
                 money.setText("");
             } else {
                 alert.show("FAILURE", "Not enough money to withdraw","");
@@ -62,6 +62,6 @@ public class PresidentCompanyFundController implements Initializable {
     }
 
     public void back(ActionEvent event){
-        president.userControlPanel(event);
+        Main.user.userControlPanel(event);
     }
 }

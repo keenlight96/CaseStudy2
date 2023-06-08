@@ -10,7 +10,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class ImportProductController {
+    NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
     @FXML
     private TextField id;
     @FXML
@@ -33,24 +37,6 @@ public class ImportProductController {
             quantityHint.setText("Not a number");
         }
 
-//        for (Product e :
-//                Main.productWarehouseManagement) {
-//            if (e.getId().equals(id.getText())) {
-//                if (check1) {
-//                    e.setQuantity(e.getQuantity() + Integer.parseInt(quantity.getText()));
-//                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//                    alert.setTitle("SUCCESS");
-//                    alert.setHeaderText("Products have been imported to warehouse");
-//                    alert.setContentText("Total cost is " + e.getPrice()*Integer.parseInt(quantity.getText()));
-//                    alert.showAndWait();
-//                    check2 = true;
-//
-//                    id.setText("");
-//                    quantity.setText("");
-//                    break;
-//                }
-//            }
-//        }
         for (Product e :
                 Main.productWarehouseManagement) {
             if (e.getId().equals(id.getText())) {
@@ -75,7 +61,7 @@ public class ImportProductController {
                         e.setQuantity(e.getQuantity() + Integer.parseInt(quantity.getText()));
                         president.setCompanyFund(president.getCompanyFund() - e.getBuyPrice() * Integer.parseInt(quantity.getText()));
                         alert.show("SUCCESS","Products have been imported to warehouse",
-                                "Total cost is " + e.getBuyPrice() * Integer.parseInt(quantity.getText()));
+                                "Total cost is " + numberFormat.format(e.getBuyPrice() * Integer.parseInt(quantity.getText())));
                     } else {
                         alert.show("FAILURE","President said company fund has not enough","");
                     }

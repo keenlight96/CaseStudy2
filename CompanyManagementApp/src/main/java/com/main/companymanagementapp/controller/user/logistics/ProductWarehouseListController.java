@@ -117,7 +117,6 @@ public class ProductWarehouseListController implements Initializable {
     }
 
     public void back(ActionEvent event) {
-//        Controller.switchScene(event, Controller.LMControlPanelView);
         Main.user.userControlPanel(event);
     }
 }

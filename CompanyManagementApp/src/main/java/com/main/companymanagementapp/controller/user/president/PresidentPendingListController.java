@@ -97,7 +97,7 @@ public class PresidentPendingListController implements Initializable {
     }
 
     public void back(ActionEvent event) {
-        Controller.switchScene(event, Controller.presidentControlPanelView);
+        Main.user.userControlPanel(event);
     }
 
 }

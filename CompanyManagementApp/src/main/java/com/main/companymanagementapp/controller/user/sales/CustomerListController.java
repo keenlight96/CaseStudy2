@@ -3,6 +3,7 @@ package com.main.companymanagementapp.controller.user.sales;
 import com.main.companymanagementapp.Main;
 import com.main.companymanagementapp.customer.Customer;
 import com.main.companymanagementapp.product.Product;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,9 +17,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
 import java.net.URL;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class CustomerListController implements Initializable {
+    NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
     @FXML
     private TableView<Customer> tableView;
     @FXML
@@ -30,7 +34,7 @@ public class CustomerListController implements Initializable {
     @FXML
     private TableColumn<Customer,String> addressColumn;
     @FXML
-    private TableColumn<Customer, Long> totalBuyColumn;
+    private TableColumn<Customer, String> totalBuyColumn;
     @FXML
     private TableColumn<Customer,String> originColumn;
     @FXML
@@ -45,7 +49,13 @@ public class CustomerListController implements Initializable {
         nameColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("name"));
         phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("phoneNumber"));
         addressColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("address"));
-        totalBuyColumn.setCellValueFactory(new PropertyValueFactory<Customer, Long>("totalBuy"));
+        totalBuyColumn.setCellValueFactory(cellData ->{
+            Long totalBuy = cellData.getValue().getTotalBuy();
+            if (totalBuy != 0) {
+                return new SimpleStringProperty(numberFormat.format(totalBuy));
+            }
+            return new SimpleStringProperty("");
+        });
 
 //        FilteredList<Product> filteredList = new FilteredList<>(productList);
 //        filteredList.setPredicate(Product -> {
@@ -55,7 +65,7 @@ public class CustomerListController implements Initializable {
 //        tableView.setItems(filteredList);
         tableView.setItems(customerList);
 
-        addButtonToTable();
+//        addButtonToTable();
     }
     private void addButtonToTable() {
         TableColumn<Customer, Void> colBtn = new TableColumn("Terminate");

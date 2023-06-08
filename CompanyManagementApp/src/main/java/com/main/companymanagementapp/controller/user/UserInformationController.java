@@ -26,6 +26,8 @@ public class UserInformationController implements Initializable {
     @FXML
     private TextField name;
     @FXML
+    private Label workDays;
+    @FXML
     private TextField email;
     @FXML
     private Label phoneNumber;
@@ -54,6 +56,7 @@ public class UserInformationController implements Initializable {
         password.setText(Main.user.getPassword());
         confirmPassword.setText(Main.user.getPassword());
         name.setText(Main.user.getName());
+        workDays.setText(String.valueOf(Main.user.getWorkDays()));
         email.setText(Main.user.getEmail());
         phoneNumber.setText(Main.user.getPhoneNumber());
         address.setText(Main.user.getAddress());

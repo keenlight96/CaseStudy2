@@ -137,7 +137,7 @@
          </padding>
       </Label>
       <Button alignment="CENTER" layoutX="747.0" layoutY="12.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="50.0" text="Back" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="20.0" />
-      <Label layoutX="525.0" layoutY="71.0" prefHeight="35.0" prefWidth="250.0" text="ROLE">
+      <Label layoutX="525.0" layoutY="71.0" prefHeight="35.0" prefWidth="250.0" text="Role">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -145,22 +145,35 @@
             <Insets top="5.0" />
          </padding>
       </Label>
-      <Label fx:id="id" layoutX="225.0" layoutY="101.0" prefHeight="35.0" prefWidth="250.0">
+      <Label fx:id="id" layoutX="225.0" layoutY="101.0" prefHeight="35.0" prefWidth="250.0" textFill="#737373">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="role" layoutX="525.0" layoutY="101.0" prefHeight="35.0" prefWidth="250.0">
+      <Label fx:id="role" layoutX="525.0" layoutY="101.0" prefHeight="35.0" prefWidth="250.0" textFill="#737373">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="phoneNumber" layoutX="525.0" layoutY="384.0" prefHeight="35.0" prefWidth="250.0">
+      <Label fx:id="phoneNumber" layoutX="525.0" layoutY="384.0" prefHeight="35.0" prefWidth="250.0" textFill="#737373">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="username" layoutX="225.0" layoutY="174.0" prefHeight="35.0" prefWidth="250.0">
+      <Label fx:id="username" layoutX="225.0" layoutY="174.0" prefHeight="35.0" prefWidth="250.0" textFill="#737373">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="525.0" layoutY="284.0" prefHeight="35.0" prefWidth="250.0" text="Checkin worked days">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+      </Label>
+      <Label fx:id="workDays" layoutX="525.0" layoutY="314.0" prefHeight="35.0" prefWidth="250.0" textFill="#737373">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
