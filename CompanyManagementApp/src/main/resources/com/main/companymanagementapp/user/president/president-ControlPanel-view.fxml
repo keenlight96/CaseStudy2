@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.main.companymanagementapp.controller.user.president.PresidentControlPanelController">
+   <children>
+      <Label alignment="CENTER" layoutX="397.0" layoutY="50.0" prefHeight="35.0" prefWidth="206.0" text="CONTROL PANEL" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button alignment="BOTTOM_LEFT" layoutX="97.0" layoutY="136.0" mnemonicParsing="false" onAction="#toUserListController" prefHeight="40.0" prefWidth="300.0" text="Show user list" wrapText="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="150.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button alignment="BOTTOM_LEFT" layoutX="603.0" layoutY="136.0" mnemonicParsing="false" onAction="#toProductWarehouseListController" prefHeight="40.0" prefWidth="300.0" text="Show products at warehouse" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="150.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="922.0" layoutY="20.0" mnemonicParsing="false" onAction="#logout" prefHeight="35.0" prefWidth="75.0" text="Log out" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+      <Button layoutX="819.0" layoutY="20.0" mnemonicParsing="false" onAction="#settings" prefHeight="35.0" prefWidth="75.0" text="Settings" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="20.0" />
+      <Button alignment="BOTTOM_LEFT" layoutX="150.0" layoutY="245.0" mnemonicParsing="false" onAction="#toPendingListController" prefHeight="40.0" prefWidth="300.0" text="Show pending list" AnchorPane.topAnchor="250.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button alignment="BOTTOM_LEFT" layoutX="550.0" layoutY="250.0" mnemonicParsing="false" onAction="#toProductStoreController" prefHeight="40.0" prefWidth="300.0" text="Show products at store">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button alignment="BOTTOM_LEFT" layoutX="150.0" layoutY="339.0" mnemonicParsing="false" onAction="#toAllReceiptsController" prefHeight="40.0" prefWidth="300.0" text="Show all receipts" AnchorPane.topAnchor="350.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button alignment="BOTTOM_LEFT" layoutX="150.0" layoutY="436.0" mnemonicParsing="false" onAction="#toCustomersController" prefHeight="40.0" prefWidth="300.0" text="Show customers" AnchorPane.topAnchor="450.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button alignment="BOTTOM_LEFT" layoutX="550.0" layoutY="350.0" mnemonicParsing="false" onAction="#toCompanyFundController" prefHeight="40.0" prefWidth="300.0" text="Company fund">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

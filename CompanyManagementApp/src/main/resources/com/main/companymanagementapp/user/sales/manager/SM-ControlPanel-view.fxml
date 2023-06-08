@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.main.companymanagementapp.controller.user.sales.manager.SMControlPanelController">
+   <children>
+      <Label alignment="CENTER" layoutX="350.0" layoutY="14.0" prefHeight="35.0" prefWidth="300.0" text="CONTROL PANEL" AnchorPane.topAnchor="14.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button alignment="BOTTOM_LEFT" layoutX="135.0" layoutY="124.0" mnemonicParsing="false" onAction="#toSalesPersonController" prefHeight="40.0" prefWidth="300.0" text="Show sales persons" wrapText="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="150.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button alignment="BOTTOM_LEFT" layoutX="527.0" layoutY="150.0" mnemonicParsing="false" onAction="#toCreateReceiptController" prefHeight="40.0" prefWidth="300.0" text="Create a receipt" wrapText="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="150.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button alignment="BOTTOM_LEFT" layoutX="150.0" layoutY="218.0" mnemonicParsing="false" onAction="#toCustomersController" prefHeight="40.0" prefWidth="300.0" text="Show customers" wrapText="true" AnchorPane.topAnchor="250.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button alignment="BOTTOM_LEFT" layoutX="150.0" layoutY="337.0" mnemonicParsing="false" onAction="#toProductStoreController" prefHeight="40.0" prefWidth="300.0" text="Show products at store" wrapText="true" AnchorPane.topAnchor="350.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button alignment="BOTTOM_LEFT" layoutX="150.0" layoutY="443.0" mnemonicParsing="false" onAction="#toAllReceiptsController" prefHeight="40.0" prefWidth="300.0" text="Show all receipts" wrapText="true" AnchorPane.topAnchor="450.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="928.0" layoutY="22.0" mnemonicParsing="false" onAction="#logout" prefHeight="35.0" prefWidth="65.0" text="Logout" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+      <Button alignment="BOTTOM_LEFT" layoutX="550.0" layoutY="250.0" mnemonicParsing="false" onAction="#toCreateCustomerController" prefHeight="40.0" prefWidth="300.0" text="Create a customer" wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="832.0" layoutY="20.0" mnemonicParsing="false" onAction="#settings" prefHeight="35.0" prefWidth="65.0" text="Settings" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="20.0" />
+      <Button layoutX="741.0" layoutY="20.0" mnemonicParsing="false" onAction="#checkin" prefHeight="35.0" prefWidth="65.0" text="Checkin" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="20.0" />
+   </children>
+</AnchorPane>

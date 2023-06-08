@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.main.companymanagementapp.controller.user.finance.accountant.SalaryCalculationController">
+   <children>
+      <Label alignment="CENTER" layoutX="350.0" layoutY="14.0" prefHeight="35.0" prefWidth="300.0" text="SALARY CALCULATION" AnchorPane.topAnchor="14.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="925.0" layoutY="19.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="50.0" text="Back" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+      <TableView fx:id="tableView" layoutX="90.0" layoutY="97.0" prefHeight="392.0" prefWidth="820.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="100.0">
+         <columns>
+            <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="roleColumn" prefWidth="121.0" text="Role" />
+            <TableColumn fx:id="usernameColumn" prefWidth="106.39996337890625" text="Username" />
+            <TableColumn fx:id="nameColumn" prefWidth="164.0" text="Name" />
+            <TableColumn fx:id="phoneNumberColumn" prefWidth="126.4000244140625" text="Phone Number" />
+            <TableColumn fx:id="workdaysColumn" prefWidth="84.800048828125" text="Worked Days" />
+            <TableColumn fx:id="salaryColumn" prefWidth="128.0" text="Salary" />
+         </columns>
+      </TableView>
+      <Button layoutX="419.0" layoutY="522.0" mnemonicParsing="false" onAction="#payAll" prefHeight="40.0" prefWidth="162.0" text="PAY ALL">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

@@ -1,0 +1,6 @@
+President
+Store Manager
+Sales Person
+Logistics Manager
+Logistics Employee
+Accountant

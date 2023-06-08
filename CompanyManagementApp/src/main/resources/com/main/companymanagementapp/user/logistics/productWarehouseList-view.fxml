@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.main.companymanagementapp.controller.user.logistics.ProductWarehouseListController">
+   <children>
+      <Label alignment="CENTER" layoutX="325.0" layoutY="14.0" prefHeight="35.0" prefWidth="350.0" text="PRODUCTS AT WAREHOUSE" AnchorPane.topAnchor="14.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="925.0" layoutY="19.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="50.0" text="Back" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+      <TableView fx:id="tableView" layoutX="30.0" layoutY="112.0" prefHeight="418.0" prefWidth="960.0">
+         <columns>
+            <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="nameColumn" prefWidth="240.00001525878906" text="Name" />
+            <TableColumn fx:id="uomColumn" minWidth="0.0" prefWidth="50.4000244140625" text="UOM" />
+            <TableColumn fx:id="quantityColumn" prefWidth="58.0" text="Quantity" />
+            <TableColumn fx:id="buyPriceColumn" prefWidth="96.0" text="Price" />
+            <TableColumn fx:id="totalBuyPriceColumn" prefWidth="115.0" text="Total Price" />
+            <TableColumn fx:id="originColumn" prefWidth="89.0" text="Origin" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="137.0" text="Description" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

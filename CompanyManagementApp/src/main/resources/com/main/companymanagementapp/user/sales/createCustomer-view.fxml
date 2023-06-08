@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.main.companymanagementapp.controller.user.sales.CreateCustomerController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a6d1ff" height="600.0" layoutX="219.0" stroke="BLACK" strokeType="INSIDE" width="600.0" AnchorPane.topAnchor="0.0" />
+      <Label alignment="CENTER" layoutX="369.0" layoutY="20.0" prefHeight="35.0" prefWidth="300.0" text="CREATE A CUSTOMER" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="925.0" layoutY="19.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="50.0" text="Back" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+      <Label layoutX="324.0" layoutY="100.0" prefHeight="35.0" prefWidth="150.0" text="ID" AnchorPane.topAnchor="100.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="324.0" layoutY="150.0" prefHeight="35.0" prefWidth="150.0" text="Name" AnchorPane.topAnchor="150.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="name" layoutX="475.0" layoutY="167.0" prefHeight="30.0" prefWidth="250.0" AnchorPane.topAnchor="150.0" />
+      <Label fx:id="nameHint" layoutX="475.0" layoutY="197.0" prefHeight="20.0" prefWidth="250.0" textFill="#d70000" AnchorPane.topAnchor="180.0">
+         <font>
+            <Font size="10.0" />
+         </font>
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+      </Label>
+      <Label layoutX="324.0" layoutY="221.0" prefHeight="35.0" prefWidth="150.0" text="Phone Number" AnchorPane.topAnchor="200.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="phoneNumber" layoutX="475.0" layoutY="224.0" prefHeight="30.0" prefWidth="250.0" AnchorPane.topAnchor="200.0" />
+      <Label fx:id="phoneNumberHint" layoutX="475.0" layoutY="257.0" prefHeight="20.0" prefWidth="250.0" textFill="#d70000" AnchorPane.topAnchor="230.0">
+         <font>
+            <Font size="10.0" />
+         </font>
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+      </Label>
+      <Label layoutX="324.0" layoutY="317.0" prefHeight="35.0" prefWidth="150.0" text="Address" AnchorPane.topAnchor="250.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="address" layoutX="475.0" layoutY="320.0" prefHeight="30.0" prefWidth="250.0" AnchorPane.topAnchor="250.0" />
+      <Label fx:id="addressHint" layoutX="475.0" layoutY="353.0" prefHeight="20.0" prefWidth="250.0" textFill="#d70000" AnchorPane.topAnchor="280.0">
+         <font>
+            <Font size="10.0" />
+         </font>
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+      </Label>
+      <Button layoutX="481.0" layoutY="474.0" mnemonicParsing="false" onAction="#createCustomer" prefHeight="40.0" text="Create">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label fx:id="id" layoutX="475.0" layoutY="100.0" prefHeight="35.0" prefWidth="150.0" textFill="#6b6b6b">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
